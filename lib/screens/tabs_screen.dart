@@ -11,11 +11,11 @@ class TabsScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: Text('Science Bee \'19'),
-          bottom: TabBar(tabs: <Widget>[
-            Tab(text: 'Live Feed',),
-            Tab(text: 'Timetable',),
-            Tab(text: 'Map',),
-          ],),
+          // bottom: TabBar(tabs: <Widget>[
+          //   Tab(text: 'Live Feed',),
+          //   Tab(text: 'Timetable',),
+          //   Tab(text: 'Map',),
+          // ],),
         ),
         body: TabBarView(
           children: <Widget>[
@@ -23,6 +23,23 @@ class TabsScreen extends StatelessWidget {
             TimetableScreen(),
             MapScreen(),
           ],
+        ),
+        bottomNavigationBar: Container(
+          child: TabBar(
+            tabs: <Widget>[
+              Tab(
+                text: 'Live Feed',
+              ),
+              Tab(
+                text: 'Timetable',
+              ),
+              Tab(
+                text: 'Map',
+              ),
+            ],
+            indicatorColor: Colors.white,
+          ),
+          color: Colors.blue,
         ),
       ),
     );
