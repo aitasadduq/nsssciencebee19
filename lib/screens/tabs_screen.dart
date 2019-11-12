@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'live_feed_screen.dart';
 import 'timetable_screen.dart';
 import 'map_screen.dart';
+import '../widgets/main_drawer.dart';
 
 class TabsScreen extends StatelessWidget {
   @override
@@ -17,6 +18,7 @@ class TabsScreen extends StatelessWidget {
           //   Tab(text: 'Map',),
           // ],),
         ),
+        drawer: MainDrawer(),
         body: TabBarView(
           children: <Widget>[
             LiveFeedScreen(),
@@ -39,7 +41,7 @@ class TabsScreen extends StatelessWidget {
             ],
             indicatorColor: Colors.white,
           ),
-          color: Colors.blue,
+          color: Theme.of(context).primaryColor,
         ),
       ),
     );
