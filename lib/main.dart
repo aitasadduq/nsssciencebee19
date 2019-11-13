@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'screens/tabs_screen.dart';
 import 'screens/modules_screen.dart';
 import 'screens/contacts_screen.dart';
+import 'screens/module_guidlines_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -23,12 +24,13 @@ class MyApp extends StatelessWidget {
         // is not restarted.
 //        primarySwatch: Colors.blue,
         primaryColor: Colors.blue,
-        accentColor: Colors.blueGrey;
+        accentColor: Colors.blueGrey,
       ),
       home: TabsScreen(),
       routes: {
         ModulesScreen.routeName: (ctx) => ModulesScreen(),
         ContactsScreen.routeName: (ctx) => ContactsScreen(),
+        ModuleGuidlinesScreen.routeName: (ctx) => ModuleGuidlinesScreen(),
       },
     );
   }
