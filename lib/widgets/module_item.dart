@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../screens/module_guidlines_screen.dart';
+import '../screens/module_guidelines_screen.dart';
 
 class ModuleItem extends StatelessWidget {
   final String id;
@@ -14,7 +14,7 @@ class ModuleItem extends StatelessWidget {
 
   void selectModule(BuildContext context) {
     Navigator.of(context)
-        .pushNamed(ModuleGuidlinesScreen.routeName, arguments: {
+        .pushNamed(ModuleGuidelinesScreen.routeName, arguments: {
       'id': id,
       'title': title,
     });
