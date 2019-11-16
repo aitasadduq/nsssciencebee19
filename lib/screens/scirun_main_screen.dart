@@ -18,6 +18,7 @@ class _ScirunMainScreenState extends State<ScirunMainScreen> {
   final double diameter = 40;
   String barcode = '';
   int clueNum = currentClue;
+  int penalty = 3;
 
   @override
   void initState() {
@@ -36,16 +37,18 @@ class _ScirunMainScreenState extends State<ScirunMainScreen> {
 //        height: double.infinity,
 //        width: double.infinity,
         child: Center(
-          child: Column(
-            children: <Widget>[
-              ClueItem(
-                clueNum: clueNum,
-              ),
-              Center(
-                child: Text(score.toString()),
-              ),
-            ],
-          ),
+          child: clueNum < 5
+              ? Column(
+                  children: <Widget>[
+                    ClueItem(
+                      clueNum: clueNum,
+                    ),
+                    Center(
+                      child: Text(score.toString()),
+                    ),
+                  ],
+                )
+              : Text('You have solved all the clues!'),
         ),
       ),
       floatingActionButton: Column(
@@ -75,6 +78,69 @@ class _ScirunMainScreenState extends State<ScirunMainScreen> {
                 child: Icon(Icons.lightbulb_outline),
                 heroTag: 1,
                 tooltip: 'Hint',
+                onPressed: () {
+                  if (clueNum < 5) {
+                    if (!clues[clueNum].hintViewed) {
+                      bool continued = false;
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text('Use Hint?'),
+                              content: Text(
+                                  'Using the hint will reduce the points you earn by solving this clue. Do you want to continue?'),
+                              actions: <Widget>[
+                                FlatButton(
+                                  child: Text('Cancel'),
+                                  onPressed: () => Navigator.of(context).pop(),
+                                ),
+                                FlatButton(
+                                  child: Text('Continue'),
+                                  onPressed: () {
+                                    clues[clueNum].hintViewed = true;
+                                    score -= penalty;
+                                    continued = true;
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                              ],
+                            );
+                          });
+                      if (continued) {
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: Text('Hint'),
+                                content: Text(clues[clueNum].hint),
+                                actions: <Widget>[
+                                  FlatButton(
+                                    child: Text('OK'),
+                                    onPressed: () =>
+                                        Navigator.of(context).pop(),
+                                  ),
+                                ],
+                              );
+                            });
+                      }
+                    } else {
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text('Hint'),
+                              content: Text(clues[clueNum].hint),
+                              actions: <Widget>[
+                                FlatButton(
+                                  child: Text('OK'),
+                                  onPressed: () => Navigator.of(context).pop(),
+                                ),
+                              ],
+                            );
+                          });
+                    }
+                  }
+                },
               ),
             ),
           ),
@@ -90,37 +156,40 @@ class _ScirunMainScreenState extends State<ScirunMainScreen> {
                 heroTag: 3,
                 tooltip: 'Skip to Next Clue',
                 onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        title: Text('Skip Clue'),
-                        content: Text('Skipping the clue will earn you 0 points for this clue. Do you want to continue?'),
-                        actions: <Widget>[
-                          FlatButton(
-                            child: Text('Cancel'),
-                            onPressed: () => Navigator.of(context).pop(),
-                          ),
-                          FlatButton(
-                            child: Text('Continue'),
-                            onPressed: () {
-                              if (clueNum == solvedClue) {
-                                solvedClues.add(clues[clueNum]);
-                                solvedClue += 1;
-                              }
-                              clues[clueNum].incomplete = false;
-                              solvedClues[clueNum].incomplete = false;
-                              currentClue += 1;
-                              setState(() {
-                                clueNum = currentClue;
-                              });
-                              Navigator.of(context).pop();
-                            },
-                          ),
-                        ],
-                      );
-                    },
-                  );
+                  if (clueNum < 5) {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: Text('Skip Clue?'),
+                          content: Text(
+                              'Skipping the clue will earn you 0 points for this clue. Do you want to continue?'),
+                          actions: <Widget>[
+                            FlatButton(
+                              child: Text('Cancel'),
+                              onPressed: () => Navigator.of(context).pop(),
+                            ),
+                            FlatButton(
+                              child: Text('Continue'),
+                              onPressed: () {
+                                if (clueNum == solvedClue) {
+                                  solvedClues.add(clues[clueNum]);
+                                  solvedClue += 1;
+                                }
+                                clues[clueNum].incomplete = false;
+                                solvedClues[clueNum].incomplete = false;
+                                currentClue += 1;
+                                setState(() {
+                                  clueNum = currentClue;
+                                });
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  }
                 },
               ),
             ),
@@ -132,7 +201,11 @@ class _ScirunMainScreenState extends State<ScirunMainScreen> {
             child: Icon(Icons.settings_overscan),
             heroTag: 2,
             tooltip: 'Scan QR Code',
-            onPressed: scan,
+            onPressed: () {
+              if (clueNum < 5) {
+                scan();
+              }
+            },
           ),
         ],
       ),
