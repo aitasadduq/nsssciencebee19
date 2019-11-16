@@ -19,6 +19,8 @@ class ModulesScreen extends StatelessWidget {
             .map((modData) => ModuleItem(
                   id: modData.id,
                   title: modData.title,
+                  guidelines: modData.guidelines,
+                  entryCode: modData.widget,
                 ))
             .toList(),
         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(

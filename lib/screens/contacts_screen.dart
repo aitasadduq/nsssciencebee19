@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/main_drawer.dart';
+import 'scirun_main_screen.dart';
 
 class ContactsScreen extends StatelessWidget {
   static String routeName = '/contacts';
@@ -13,6 +14,12 @@ class ContactsScreen extends StatelessWidget {
       drawer: MainDrawer(),
       body: Center(
         child: Text('The Contacts'),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.arrow_forward),
+        onPressed: () {
+          Navigator.of(context).pushNamed(ScirunMainScreen.routeName);
+        },
       ),
     );
   }

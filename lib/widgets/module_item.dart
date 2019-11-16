@@ -4,12 +4,16 @@ import '../screens/module_guidelines_screen.dart';
 class ModuleItem extends StatelessWidget {
   final String id;
   final String title;
-  final String imageUrl;
+  final String logo;
+  final String guidelines;
+  final Widget entryCode;
 
   ModuleItem({
     @required this.id,
     @required this.title,
-    @required this.imageUrl,
+    @required this.logo,
+    @required this.guidelines,
+    @required this.entryCode,
   });
 
   void selectModule(BuildContext context) {
@@ -17,6 +21,8 @@ class ModuleItem extends StatelessWidget {
         .pushNamed(ModuleGuidelinesScreen.routeName, arguments: {
       'id': id,
       'title': title,
+      'guidelines': guidelines,
+      'widget': entryCode,
     });
   }
 

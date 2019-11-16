@@ -3,6 +3,8 @@ import 'screens/tabs_screen.dart';
 import 'screens/modules_screen.dart';
 import 'screens/contacts_screen.dart';
 import 'screens/module_guidelines_screen.dart';
+import 'screens/scirun_main_screen.dart';
+import 'screens/clues_history_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -31,6 +33,8 @@ class MyApp extends StatelessWidget {
         ModulesScreen.routeName: (ctx) => ModulesScreen(),
         ContactsScreen.routeName: (ctx) => ContactsScreen(),
         ModuleGuidelinesScreen.routeName: (ctx) => ModuleGuidelinesScreen(),
+        ScirunMainScreen.routeName: (ctx) => ScirunMainScreen(),
+        CluesHistoryScreen.routeName: (ctx) => CluesHistoryScreen(),
       },
     );
   }
