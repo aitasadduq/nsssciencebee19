@@ -1,4 +1,5 @@
 import 'models/module.dart';
+import 'models/clue.dart';
 import 'widgets/entry_code.dart';
 
 const MODULES = const [
@@ -108,3 +109,43 @@ const MODULES = const [
     widget: null,
   ),
 ];
+
+var clues = [
+  Clue(
+    id: 0,
+    code: 'bamboozled',
+    detail: 'Clue 1',
+    incomplete: true,
+  ),
+  Clue(
+    id: 1,
+    code: 'terrified',
+    detail: 'Clue 2',
+    incomplete: true,
+  ),
+  Clue(
+    id: 2,
+    code: 'petrified',
+    detail: 'Clue 3',
+    incomplete: true,
+  ),
+  Clue(
+    id: 3,
+    code: 'mortified',
+    detail: 'Clue 4',
+    incomplete: true,
+  ),
+  Clue(
+    id: 4,
+    code: 'horrified',
+    detail: 'Clue 5',
+    incomplete: true,
+  ),
+];
+
+var solvedClues = [];
+
+var currentClue = 0;
+var solvedClue = 0;
+
+var score = 0;

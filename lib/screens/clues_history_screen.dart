@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../widgets/clue_item.dart';
+import '../data.dart';
 
 class CluesHistoryScreen extends StatelessWidget {
   static String routeName = '/clues-history';
@@ -9,8 +11,19 @@ class CluesHistoryScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Solved Clues'),
       ),
-      body: Center(
-        child: Text('Solved Clues\' History'),
+      body: Container(
+        padding: EdgeInsets.all(25),
+        child: solvedClue == 0
+            ? Center(
+                child: Text('Your solved clues will appear here'),
+              )
+            : Column(
+                children: solvedClues
+                    .map((clueData) => ClueItem(
+                          clueNum: clueData.id,
+                        ))
+                    .toList(),
+              ),
       ),
     );
   }
