@@ -11,7 +11,7 @@ class ModuleItem extends StatelessWidget {
   ModuleItem({
     @required this.id,
     @required this.title,
-    @required this.logo,
+    this.logo,
     @required this.guidelines,
     @required this.entryCode,
   });
