@@ -12,7 +12,9 @@ class ModuleGuidelinesScreen extends StatefulWidget {
 
 class _ModuleGuidelinesScreenState extends State<ModuleGuidelinesScreen> {
   PDFDocument document;
-  bool _isLoading = true;
+  PDFDocument doc;
+  bool loading = true;
+  Image image;
 
   @override
   Widget build(BuildContext context) {
@@ -20,29 +22,19 @@ class _ModuleGuidelinesScreenState extends State<ModuleGuidelinesScreen> {
         ModalRoute.of(context).settings.arguments as Map<String, Object>;
     final title = routeArgs['title'];
     final docPath = routeArgs['guidelines'];
+    if (loading)
+      _doc(docPath);
 //    final widget = routeArgs['widget'];
-    WidgetsBinding.instance.addPostFrameCallback((_) => _doc(docPath));
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
       ),
       drawer: MainDrawer(),
-      body: Column(
-        children: <Widget>[
-          RaisedButton(
-            onPressed: openSciRun(context),
-            child: Text('Open Sci-Run'),
-          ),
-          Container(
-            child: _isLoading
-                ? Center(
-                    child: CircularProgressIndicator(),
-                  )
-                : PDFViewer(
-                    document: document,
-                  ),
-          ),
-        ],
+      body: Container(
+        decoration: BoxDecoration(),
+        child: PDFViewer(
+          document: document,
+        ),
       ),
     );
   }
@@ -51,10 +43,11 @@ class _ModuleGuidelinesScreenState extends State<ModuleGuidelinesScreen> {
     Navigator.of(ctx).pushNamed(ScirunMainScreen.routeName);
   }
 
-  void _doc(String docPath) async {
-    document = await PDFDocument.fromAsset(docPath);
+  _doc(String docPath) async{
+    doc = await PDFDocument.fromAsset(docPath);
     setState(() {
-      _isLoading = false;
+      loading = false;
+      document = doc;
     });
   }
 }
