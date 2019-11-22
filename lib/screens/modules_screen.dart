@@ -19,6 +19,7 @@ class ModulesScreen extends StatelessWidget {
             .map((modData) => ModuleItem(
                   id: modData.id,
                   title: modData.title,
+                  logo: null, //NEED LOGO
                   guidelines: modData.guidelines,
                   entryCode: modData.widget,
                 ))
