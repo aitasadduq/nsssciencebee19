@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:barcode_scan/barcode_scan.dart';
+//import 'package:barcode_scan/barcode_scan.dart';
+//import 'qr_reader_screen.dart';
 import 'clues_history_screen.dart';
+import 'package:qrcode_reader/qrcode_reader.dart';
 import 'dart:async';
 import '../widgets/clue_item.dart';
 import '../models/clue.dart';
@@ -42,6 +44,9 @@ class _ScirunMainScreenState extends State<ScirunMainScreen> {
                   children: <Widget>[
                     ClueItem(
                       clueNum: clueNum,
+                    ),
+                    Center(
+                      child: Text(barcode),
                     ),
                     Center(
                       child: Text(score.toString()),
@@ -202,7 +207,7 @@ class _ScirunMainScreenState extends State<ScirunMainScreen> {
             heroTag: 2,
             tooltip: 'Scan QR Code',
             onPressed: () {
-              if (clueNum < 5) {
+              if (currentClue == solvedClue && clueNum < 5) {
                 scan();
               }
             },
@@ -213,30 +218,49 @@ class _ScirunMainScreenState extends State<ScirunMainScreen> {
   }
 
   Future scan() async {
-    try {
-      String barcode = await BarcodeScanner.scan();
-//      setState(() {
-//        this.barcode = barcode;
-//      });
-      if (currentClue == solvedClue && clues[solvedClue].code == barcode) {
+    String futureBarcode = await new QRCodeReader().scan();
+    if (futureBarcode != null) {
+      setState(() {
+        barcode = futureBarcode;
+      });
+      if (clues[solvedClue].code == barcode) {
         solvedClues.add(clues[solvedClue]);
         solvedClue += 1;
-      }
-//      setState(() {
-//        clueNum = currentClue;
-//      });
-    } on PlatformException catch (e) {
-      if (e.code == BarcodeScanner.CameraAccessDenied) {
         setState(() {
-          this.barcode = 'Camera permission needed!';
+          clueNum = currentClue;
         });
       } else {
-        setState(() => this.barcode = 'Unknown error: $e');
+        score -= 0.5;
       }
-    } on FormatException {
-      setState(() => this.barcode = 'User pressed back before scanning.');
-    } catch (e) {
-      setState(() => this.barcode = 'Unknown error: $e');
+    } else {
+      setState(() {
+        barcode = 'User pressed back button';
+      });
     }
+//    try {
+//      String barcode = await BarcodeScanner.scan();
+////      setState(() {
+////        this.barcode = barcode;
+////      });
+//      if (currentClue == solvedClue && clues[solvedClue].code == barcode) {
+//        solvedClues.add(clues[solvedClue]);
+//        solvedClue += 1;
+//      }
+////      setState(() {
+////        clueNum = currentClue;
+////      });
+//    } on PlatformException catch (e) {
+//      if (e.code == BarcodeScanner.CameraAccessDenied) {
+//        setState(() {
+//          this.barcode = 'Camera permission needed!';
+//        });
+//      } else {
+//        setState(() => this.barcode = 'Unknown error: $e');
+//      }
+//    } on FormatException {
+//      setState(() => this.barcode = 'User pressed back before scanning.');
+//    } catch (e) {
+//      setState(() => this.barcode = 'Unknown error: $e');
+//    }
   }
 }

@@ -6,6 +6,7 @@ import 'screens/module_guidelines_screen.dart';
 import 'screens/scirun_main_screen.dart';
 import 'screens/clues_history_screen.dart';
 import 'screens/enter_score_screen.dart';
+//import 'screens/qr_reader_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
         ScirunMainScreen.routeName: (ctx) => ScirunMainScreen(),
         CluesHistoryScreen.routeName: (ctx) => CluesHistoryScreen(),
         EnterScoreScreen.routeName: (ctx) => EnterScoreScreen(),
+//        QRReaderScreen.routeName: (ctx) => QRReaderScreen(),
       },
     );
   }

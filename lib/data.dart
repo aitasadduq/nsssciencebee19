@@ -158,4 +158,4 @@ var solvedClues = [];
 var currentClue = 0;
 var solvedClue = 0;
 
-var score = 0;
+var score = 0.0;
