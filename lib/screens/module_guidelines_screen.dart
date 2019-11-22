@@ -13,8 +13,7 @@ class ModuleGuidelinesScreen extends StatefulWidget {
 class _ModuleGuidelinesScreenState extends State<ModuleGuidelinesScreen> {
   PDFDocument document;
   PDFDocument doc;
-  bool loaded = false;
-  bool done = false;
+  bool loading = true;
   Image image;
 
   @override
@@ -23,13 +22,8 @@ class _ModuleGuidelinesScreenState extends State<ModuleGuidelinesScreen> {
         ModalRoute.of(context).settings.arguments as Map<String, Object>;
     final title = routeArgs['title'];
     final docPath = routeArgs['guidelines'];
-    if(!loaded){
+    if (loading)
       _doc(docPath);
-    }else if(!done){
-      setState(() {
-        document = doc;
-      });
-    }
 //    final widget = routeArgs['widget'];
     return Scaffold(
       appBar: AppBar(
@@ -51,6 +45,9 @@ class _ModuleGuidelinesScreenState extends State<ModuleGuidelinesScreen> {
 
   _doc(String docPath) async{
     doc = await PDFDocument.fromAsset(docPath);
-    loaded = true;
+    setState(() {
+      loading = false;
+      document = doc;
+    });
   }
 }
