@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-//import 'package:barcode_scan/barcode_scan.dart';
-//import 'qr_reader_screen.dart';
 import 'clues_history_screen.dart';
 import 'package:qrcode_reader/qrcode_reader.dart';
 import 'dart:async';
 import '../widgets/clue_item.dart';
-import '../models/clue.dart';
 import '../data.dart';
 
 class ScirunMainScreen extends StatefulWidget {

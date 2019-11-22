@@ -6,7 +6,10 @@ import 'screens/module_guidelines_screen.dart';
 import 'screens/scirun_main_screen.dart';
 import 'screens/clues_history_screen.dart';
 import 'screens/enter_score_screen.dart';
-//import 'screens/qr_reader_screen.dart';
+import 'screens/ambassador_program_screen.dart';
+import 'screens/perks_screen.dart';
+import 'screens/official_discount_screen.dart';
+import 'screens/winning_prizes_screen.dart';
 
 void main() => runApp(MyApp());
 
@@ -38,7 +41,10 @@ class MyApp extends StatelessWidget {
         ScirunMainScreen.routeName: (ctx) => ScirunMainScreen(),
         CluesHistoryScreen.routeName: (ctx) => CluesHistoryScreen(),
         EnterScoreScreen.routeName: (ctx) => EnterScoreScreen(),
-//        QRReaderScreen.routeName: (ctx) => QRReaderScreen(),
+        AmbassadorProgramScreen.routeName: (ctx) => AmbassadorProgramScreen(),
+        PerksScreen.routeName: (ctx) => PerksScreen(),
+        OfficialDiscountScreen.routeName: (ctx) => OfficialDiscountScreen(),
+        WinningPrizesScreen.routeName: (ctx) => WinningPrizesScreen(),
       },
     );
   }
