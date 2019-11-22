@@ -21,6 +21,7 @@ class ModuleItem extends StatelessWidget {
         .pushNamed(ModuleGuidelinesScreen.routeName, arguments: {
       'id': id,
       'title': title,
+      'logo':logo,
       'guidelines': guidelines,
       'widget': entryCode,
     });
