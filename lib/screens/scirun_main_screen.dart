@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'clues_history_screen.dart';
 import 'package:qrcode_reader/qrcode_reader.dart';
+import '../widgets/nust_map.dart';
 import 'dart:async';
 import '../widgets/clue_item.dart';
 import '../data.dart';
@@ -13,6 +14,7 @@ class ScirunMainScreen extends StatefulWidget {
 }
 
 class _ScirunMainScreenState extends State<ScirunMainScreen> {
+
   final double diameter = 40;
   String barcode = '';
   int clueNum = currentClue;
@@ -47,6 +49,9 @@ class _ScirunMainScreenState extends State<ScirunMainScreen> {
                     Center(
                       child: Text(score.toString()),
                     ),
+                    Container(
+                      height: 500,
+                      child: NustMap(),),
                   ],
                 )
               : Text('You have solved all the clues!'),
