@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'clues_history_screen.dart';
-import 'package:qrcode_reader/qrcode_reader.dart';
+//import 'package:qrcode_reader/qrcode_reader.dart';
 import 'dart:async';
 import '../widgets/clue_item.dart';
 import '../data.dart';
@@ -214,7 +214,7 @@ class _ScirunMainScreenState extends State<ScirunMainScreen> {
   }
 
   Future scan() async {
-    String futureBarcode = await new QRCodeReader().scan();
+    /*String futureBarcode = await new QRCodeReader().scan();
     if (futureBarcode != null) {
       setState(() {
         barcode = futureBarcode;
@@ -232,7 +232,7 @@ class _ScirunMainScreenState extends State<ScirunMainScreen> {
       setState(() {
         barcode = 'User pressed back button';
       });
-    }
+    }*/
 //    try {
 //      String barcode = await BarcodeScanner.scan();
 ////      setState(() {
