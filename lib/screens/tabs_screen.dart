@@ -20,6 +20,7 @@ class TabsScreen extends StatelessWidget {
         ),
         drawer: MainDrawer(),
         body: TabBarView(
+          physics: NeverScrollableScrollPhysics(),
           children: <Widget>[
             LiveFeedScreen(),
             TimetableScreen(),

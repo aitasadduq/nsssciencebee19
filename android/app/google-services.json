@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "882545388830",
-    "firebase_url": "https://science-bee-19-d76e0.firebaseio.com",
-    "project_id": "science-bee-19-d76e0",
-    "storage_bucket": "science-bee-19-d76e0.appspot.com"
+    "project_number": "85862656334",
+    "firebase_url": "https://nsssciencebee19.firebaseio.com",
+    "project_id": "nsssciencebee19",
+    "storage_bucket": "nsssciencebee19.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:882545388830:android:934a115b84c2847651ed0f",
+        "mobilesdk_app_id": "1:85862656334:android:156a80d383e65d5d11961f",
         "android_client_info": {
           "package_name": "com.nsssciencebee.nss_sciencebee_19"
         }
       },
       "oauth_client": [
         {
-          "client_id": "882545388830-v3n9vudh2aaig95rtacrjondueh8uht2.apps.googleusercontent.com",
+          "client_id": "85862656334-ruvcrlec4516vgievvhltboo78mcv954.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDczqLsWBRk5EoDyOeTODydsE6-y0F0fVs"
+          "current_key": "AIzaSyDS7ietYKHKuHOWUB1RpGMyvFWbOexWE58"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "882545388830-v3n9vudh2aaig95rtacrjondueh8uht2.apps.googleusercontent.com",
+              "client_id": "85862656334-ruvcrlec4516vgievvhltboo78mcv954.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
