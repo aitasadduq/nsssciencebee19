@@ -269,7 +269,7 @@ class _ScirunMainScreenState extends State<ScirunMainScreen> {
 
     DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
     AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
-    if (androidInfo.version.sdkInt >= 27) {
+    if (androidInfo.version.sdkInt >= 23) {
       //code = await new QRCodeReader().scan();
       code = null;
       if(code != null)
