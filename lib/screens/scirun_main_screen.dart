@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'clues_history_screen.dart';
 //import 'package:qrcode_reader/qrcode_reader.dart';
+import 'package:device_info/device_info.dart';
 import 'dart:async';
 import '../widgets/clue_item.dart';
 import '../data.dart';
@@ -17,11 +18,12 @@ class _ScirunMainScreenState extends State<ScirunMainScreen> {
   String barcode = '';
   int clueNum = currentClue;
   int penalty = 3;
+  TextEditingController _textFieldController = TextEditingController();
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
+  void updateClue() {
+    setState(() {
+      clueNum = currentClue;
+    });
   }
 
   @override
@@ -39,6 +41,7 @@ class _ScirunMainScreenState extends State<ScirunMainScreen> {
               ? Column(
                   children: <Widget>[
                     ClueItem(
+                      this.updateClue,
                       clueNum: clueNum,
                     ),
                     Center(
@@ -204,7 +207,10 @@ class _ScirunMainScreenState extends State<ScirunMainScreen> {
             tooltip: 'Scan QR Code',
             onPressed: () {
               if (currentClue == solvedClue && clueNum < 5) {
-                scan();
+                if (!clues[currentClue].textToRead) {
+                  scanWithQR(context);
+                } else
+                  builder(context, "Solve Clue");
               }
             },
           ),
@@ -213,50 +219,69 @@ class _ScirunMainScreenState extends State<ScirunMainScreen> {
     );
   }
 
-  Future scan() async {
-    /*String futureBarcode = await new QRCodeReader().scan();
-    if (futureBarcode != null) {
-      setState(() {
-        barcode = futureBarcode;
-      });
-      if (clues[solvedClue].code == barcode) {
-        solvedClues.add(clues[solvedClue]);
-        solvedClue += 1;
-        setState(() {
-          clueNum = currentClue;
+  builder(context, message) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text(message),
+            content: TextField(
+              controller: _textFieldController,
+              decoration: InputDecoration(hintText: "Enter Here"),
+            ),
+            actions: <Widget>[
+              new FlatButton(
+                child: new Text('CANCEL'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+              new FlatButton(
+                child: new Text('SUBMIT'),
+                onPressed: () {
+                  scanWithText(_textFieldController.text);
+                  debugPrint(barcode);
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
         });
-      } else {
-        score -= 0.5;
-      }
-    } else {
+  }
+
+  calcScore(code) {
+    setState(() {
+      barcode = code;
+    });
+    if (clues[solvedClue].code == barcode) {
+      solvedClues.add(clues[solvedClue]);
+      solvedClue += 1;
       setState(() {
-        barcode = 'User pressed back button';
+        clueNum = currentClue;
       });
-    }*/
-//    try {
-//      String barcode = await BarcodeScanner.scan();
-////      setState(() {
-////        this.barcode = barcode;
-////      });
-//      if (currentClue == solvedClue && clues[solvedClue].code == barcode) {
-//        solvedClues.add(clues[solvedClue]);
-//        solvedClue += 1;
-//      }
-////      setState(() {
-////        clueNum = currentClue;
-////      });
-//    } on PlatformException catch (e) {
-//      if (e.code == BarcodeScanner.CameraAccessDenied) {
-//        setState(() {
-//          this.barcode = 'Camera permission needed!';
-//        });
-//      } else {
-//        setState(() => this.barcode = 'Unknown error: $e');
-//      }
-//    } on FormatException {
-//      setState(() => this.barcode = 'User pressed back before scanning.');
-//    } catch (e) {
-//      setState(() => this.barcode = 'Unknown error: $e');
-//    }
+    } else {
+      score -= 0.5;
+    }
+  }
+
+  scanWithQR(context) async {
+    String code;
+
+    DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+    AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+    if (androidInfo.version.sdkInt >= 27) {
+      //code = await new QRCodeReader().scan();
+      code = null;
+      if(code != null)
+        calcScore(code);
+    } else {
+      builder(context, "QR Reader Unavailable in this Android Version, Consult nearby OC for Assistance!");
+    }
+
+    return code;
+  }
+
+  scanWithText(textCode) {
+    calcScore(textCode);
   }
 }

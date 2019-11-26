@@ -19,7 +19,7 @@ class CluesHistoryScreen extends StatelessWidget {
               )
             : Column(
                 children: solvedClues
-                    .map((clueData) => ClueItem(
+                    .map((clueData) => ClueItem(null,
                           clueNum: clueData.id,
                         ))
                     .toList(),

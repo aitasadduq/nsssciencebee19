@@ -1,6 +1,5 @@
 import 'models/module.dart';
 import 'models/clue.dart';
-import 'widgets/entry_code.dart';
 
 const MODULES = const [
   Module(
@@ -118,6 +117,7 @@ var clues = [
     hint: 'Hint 1',
     hintViewed: false,
     incomplete: true,
+    textToRead: false,
   ),
   Clue(
     id: 1,
@@ -126,6 +126,7 @@ var clues = [
     hint: 'Hint 2',
     hintViewed: false,
     incomplete: true,
+    textToRead: true,
   ),
   Clue(
     id: 2,
@@ -134,6 +135,7 @@ var clues = [
     hint: 'Hint 3',
     hintViewed: false,
     incomplete: true,
+    textToRead: false,
   ),
   Clue(
     id: 3,
@@ -142,6 +144,7 @@ var clues = [
     hint: 'Hint 4',
     hintViewed: false,
     incomplete: true,
+    textToRead: false,
   ),
   Clue(
     id: 4,
@@ -150,6 +153,7 @@ var clues = [
     hint: 'Hint 5',
     hintViewed: false,
     incomplete: true,
+    textToRead: false,
   ),
 ];
 
