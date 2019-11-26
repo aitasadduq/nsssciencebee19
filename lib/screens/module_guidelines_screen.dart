@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
+import 'package:nss_sciencebee_19/widgets/entry_code.dart';
 import 'scirun_main_screen.dart';
 import '../widgets/main_drawer.dart';
 
@@ -22,8 +23,7 @@ class _ModuleGuidelinesScreenState extends State<ModuleGuidelinesScreen> {
         ModalRoute.of(context).settings.arguments as Map<String, Object>;
     final title = routeArgs['title'];
     final docPath = routeArgs['guidelines'];
-    if (loading)
-      _doc(docPath);
+    if (loading) _doc(docPath);
 //    final widget = routeArgs['widget'];
     return Scaffold(
       appBar: AppBar(
@@ -32,18 +32,21 @@ class _ModuleGuidelinesScreenState extends State<ModuleGuidelinesScreen> {
       drawer: MainDrawer(),
       body: Container(
         decoration: BoxDecoration(),
-        child: PDFViewer(
-          document: document,
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              child: PDFViewer(
+                document: document,
+              ),
+            ),
+            routeArgs["hasApp"] ? EntryCode() : Container(),
+          ],
         ),
       ),
     );
   }
 
-  openSciRun(BuildContext ctx) {
-    Navigator.of(ctx).pushNamed(ScirunMainScreen.routeName);
-  }
-
-  _doc(String docPath) async{
+  _doc(String docPath) async {
     doc = await PDFDocument.fromAsset(docPath);
     setState(() {
       loading = false;

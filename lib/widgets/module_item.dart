@@ -6,14 +6,14 @@ class ModuleItem extends StatelessWidget {
   final String title;
   final String logo;
   final String guidelines;
-  final Widget entryCode;
+  final bool hasApp;
 
   ModuleItem({
     @required this.id,
     @required this.title,
     this.logo,
     @required this.guidelines,
-    @required this.entryCode,
+    @required this.hasApp,
   });
 
   void selectModule(BuildContext context) {
@@ -23,7 +23,7 @@ class ModuleItem extends StatelessWidget {
       'title': title,
       'logo':logo,
       'guidelines': guidelines,
-      'widget': entryCode,
+      'hasApp': hasApp,
     });
   }
 

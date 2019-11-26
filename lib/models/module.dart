@@ -5,7 +5,7 @@ class Module {
   final String title;
   final String logo;
   final String guidelines;
-  final Widget widget;
+  final bool hasApp;
 
   const Module({
     @required this.id,
@@ -13,6 +13,6 @@ class Module {
     this.logo =
         'https://cdn.pixabay.com/photo/2018/07/11/21/51/toast-3532016_1280.jpg',
     @required this.guidelines,
-    @required this.widget,
+    @required this.hasApp,
   });
 }

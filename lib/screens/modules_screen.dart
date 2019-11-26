@@ -21,7 +21,7 @@ class ModulesScreen extends StatelessWidget {
                   title: modData.title,
                   logo: null, //NEED LOGO
                   guidelines: modData.guidelines,
-                  entryCode: modData.widget,
+                  hasApp: modData.hasApp,
                 ))
             .toList(),
         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
