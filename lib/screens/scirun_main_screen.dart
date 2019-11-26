@@ -15,7 +15,7 @@ class ScirunMainScreen extends StatefulWidget {
 
 class _ScirunMainScreenState extends State<ScirunMainScreen> {
 
-  final double diameter = 40;
+  final double diameter = 80;
   String barcode = '';
   int clueNum = currentClue;
   int penalty = 3;
@@ -64,8 +64,9 @@ class _ScirunMainScreenState extends State<ScirunMainScreen> {
             height: diameter,
             width: diameter,
             child: FittedBox(
-              child: FloatingActionButton(
-                child: Icon(Icons.history),
+              child: FloatingActionButton.extended(
+                icon: Icon(Icons.history),
+                label: Text('History'),
                 heroTag: 0,
                 tooltip: 'Solved Clues History',
                 onPressed: () => Navigator.of(context)
@@ -73,15 +74,16 @@ class _ScirunMainScreenState extends State<ScirunMainScreen> {
               ),
             ),
           ),
-          SizedBox(
-            height: 20,
-          ),
+//          SizedBox(
+//            height: 1,
+//          ),
           Container(
             height: diameter,
             width: diameter,
             child: FittedBox(
-              child: FloatingActionButton(
-                child: Icon(Icons.lightbulb_outline),
+              child: FloatingActionButton.extended(
+                icon: Icon(Icons.lightbulb_outline),
+                label: Text('Hint'),
                 heroTag: 1,
                 tooltip: 'Hint',
                 onPressed: () {
@@ -150,15 +152,16 @@ class _ScirunMainScreenState extends State<ScirunMainScreen> {
               ),
             ),
           ),
-          SizedBox(
-            height: 20,
-          ),
+//          SizedBox(
+//            height: 1,
+//          ),
           Container(
             height: diameter,
             width: diameter,
             child: FittedBox(
-              child: FloatingActionButton(
-                child: Icon(Icons.skip_next),
+              child: FloatingActionButton.extended(
+                icon: Icon(Icons.skip_next),
+                label: Text('Skip'),
                 heroTag: 3,
                 tooltip: 'Skip to Next Clue',
                 onPressed: () {
@@ -200,11 +203,12 @@ class _ScirunMainScreenState extends State<ScirunMainScreen> {
               ),
             ),
           ),
-          SizedBox(
-            height: 20,
-          ),
-          FloatingActionButton(
-            child: Icon(Icons.settings_overscan),
+//          SizedBox(
+//            height: 1,
+//          ),
+          FloatingActionButton.extended(
+            icon: Icon(Icons.settings_overscan),
+            label: Text('Scan QR'),
             heroTag: 2,
             tooltip: 'Scan QR Code',
             onPressed: () {
