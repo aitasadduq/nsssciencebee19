@@ -58,8 +58,9 @@ class _ScirunMainScreenState extends State<ScirunMainScreen> {
             height: diameter,
             width: diameter,
             child: FittedBox(
-              child: FloatingActionButton(
-                child: Icon(Icons.lightbulb_outline),
+              child: FloatingActionButton.extended(
+                icon: Icon(Icons.lightbulb_outline),
+                label: Text('Hint'),
                 heroTag: 1,
                 tooltip: 'Hint',
                 onPressed: () {

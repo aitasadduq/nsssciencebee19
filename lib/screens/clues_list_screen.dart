@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_database/firebase_database.dart';
 import '../widgets/clue_item.dart';
 import '../data.dart';
 
-class CluesListScreen extends StatelessWidget {
+class CluesListScreen extends StatefulWidget {
   static String routeName = '/clues-list';
+
+  @override
+  _CluesListScreenState createState() => _CluesListScreenState();
+}
+
+class _CluesListScreenState extends State<CluesListScreen> {
+  TextEditingController _textFieldController = TextEditingController();
+  final FirebaseDatabase _database = FirebaseDatabase.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +30,49 @@ class CluesListScreen extends StatelessWidget {
               .toList(),
         ),
       ),
+      floatingActionButton: FloatingActionButton.extended(
+        label: Text('End SciRun'),
+        icon: Icon(Icons.stop),
+        onPressed: () {
+          endSciRun(context);
+        },
+      ),
     );
+  }
+
+  endSciRun(context) {
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: Text('End SciRun? You won\'t be able to return.'),
+            content: TextField(
+              controller: _textFieldController,
+              decoration: InputDecoration(hintText: 'Enter Code Here'),
+            ),
+            actions: <Widget>[
+              new FlatButton(
+                child: new Text('CANCEL'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+              new FlatButton(
+                child: new Text('SUBMIT'),
+                onPressed: () {
+                  if (_textFieldController.text == endCode) {
+                    finished = true;
+                    _database.reference().child('scirun').push().set({
+                      'score': score,
+                      'teamName': teamName,
+                    });
+                    Navigator.of(context).pop();
+                    Navigator.of(context).pop();
+                  }
+                },
+              ),
+            ],
+          );
+        });
   }
 }

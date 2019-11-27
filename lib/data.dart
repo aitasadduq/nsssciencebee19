@@ -301,6 +301,8 @@ var currentClue = 0;
 var score = 0.0;
 
 var validCode = "42069";
+var endCode = "69420";
 var unlocked = false;
+var finished = false;
 var teamName = '';
 var clueSet = 0;

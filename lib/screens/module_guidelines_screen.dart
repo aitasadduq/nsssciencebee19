@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
+import 'package:nss_sciencebee_19/data.dart';
 import 'package:nss_sciencebee_19/widgets/entry_code.dart';
 import '../widgets/main_drawer.dart';
 
@@ -38,7 +39,7 @@ class _ModuleGuidelinesScreenState extends State<ModuleGuidelinesScreen> {
                 document: document,
               ),
             ),
-            routeArgs["hasApp"] ? EntryCode() : Container(),
+            routeArgs["hasApp"] && !finished ? EntryCode() : Container(),
           ],
         ),
       ),
