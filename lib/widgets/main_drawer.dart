@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import '../screens/modules_screen.dart';
 import '../screens/contacts_screen.dart';
-import '../screens/ambassador_program_screen.dart';
-import '../screens/perks_screen.dart';
-import '../screens/official_discount_screen.dart';
+import '../screens/ambassador_program_perks_screen.dart';
 import '../screens/winning_prizes_screen.dart';
 
 class MainDrawer extends StatelessWidget {
@@ -26,21 +24,9 @@ class MainDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            title: Text('Ambassador Program'),
+            title: Text('Ambassador Program Perks'),
             onTap: () {
-              Navigator.of(context).pushReplacementNamed(AmbassadorProgramScreen.routeName);
-            },
-          ),
-          ListTile(
-            title: Text('Perks'),
-            onTap: () {
-              Navigator.of(context).pushReplacementNamed(PerksScreen.routeName);
-            },
-          ),
-          ListTile(
-            title: Text('Official Team Discount'),
-            onTap: () {
-              Navigator.of(context).pushReplacementNamed(OfficialDiscountScreen.routeName);
+              Navigator.of(context).pushReplacementNamed(AmbassadorProgramPerksScreen.routeName);
             },
           ),
           ListTile(

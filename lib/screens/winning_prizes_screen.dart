@@ -12,7 +12,7 @@ class WinningPrizesScreen extends StatelessWidget {
       ),
       drawer: MainDrawer(),
       body: Center(
-        child: Text('The Winning Prizes'),
+        child: Text('Win a combined total of up to Rs. 100000!!'),
       ),
     );
   }

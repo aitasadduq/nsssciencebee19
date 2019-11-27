@@ -13,7 +13,16 @@ class ContactsScreen extends StatelessWidget {
       ),
       drawer: MainDrawer(),
       body: Center(
-        child: Text('The Contacts'),
+        child: Container(
+          height: 300,
+          child: Column(
+            children: <Widget>[
+              Text('Module Heads:'),
+              Text('Khan Moeen Danish: 03052888000'),
+              Text('Shaheer Mehmood: 03445115096'),
+            ],
+          ),
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.arrow_forward),
