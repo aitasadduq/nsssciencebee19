@@ -4,7 +4,7 @@ import 'screens/modules_screen.dart';
 import 'screens/contacts_screen.dart';
 import 'screens/module_guidelines_screen.dart';
 import 'screens/scirun_main_screen.dart';
-import 'screens/clues_history_screen.dart';
+import 'screens/clues_list_screen.dart';
 import 'screens/ambassador_program_perks_screen.dart';
 import 'screens/winning_prizes_screen.dart';
 
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         ContactsScreen.routeName: (ctx) => ContactsScreen(),
         ModuleGuidelinesScreen.routeName: (ctx) => ModuleGuidelinesScreen(),
         ScirunMainScreen.routeName: (ctx) => ScirunMainScreen(),
-        CluesHistoryScreen.routeName: (ctx) => CluesHistoryScreen(),
+        CluesListScreen.routeName: (ctx) => CluesHistoryScreen(),
         AmbassadorProgramPerksScreen.routeName: (ctx) => AmbassadorProgramPerksScreen(),
         WinningPrizesScreen.routeName: (ctx) => WinningPrizesScreen(),
       },

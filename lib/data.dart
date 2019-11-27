@@ -117,6 +117,7 @@ var clues = [
     hint: 'Hint 1',
     hintViewed: false,
     incomplete: true,
+    scored: false,
     textToRead: false,
   ),
   Clue(
@@ -126,6 +127,7 @@ var clues = [
     hint: 'Hint 2',
     hintViewed: false,
     incomplete: true,
+    scored: false,
     textToRead: true,
   ),
   Clue(
@@ -135,6 +137,7 @@ var clues = [
     hint: 'Hint 3',
     hintViewed: false,
     incomplete: true,
+    scored: false,
     textToRead: false,
   ),
   Clue(
@@ -144,6 +147,7 @@ var clues = [
     hint: 'Hint 4',
     hintViewed: false,
     incomplete: true,
+    scored: false,
     textToRead: false,
   ),
   Clue(
@@ -153,14 +157,12 @@ var clues = [
     hint: 'Hint 5',
     hintViewed: false,
     incomplete: true,
+    scored: false,
     textToRead: false,
   ),
 ];
 
-var solvedClues = [];
-
 var currentClue = 0;
-var solvedClue = 0;
 
 var score = 0.0;
 
