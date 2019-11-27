@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:nss_sciencebee_19/data.dart';
 import 'dart:core';
 
+import 'package:nss_sciencebee_19/screens/scirun_main_screen.dart';
+
 class ClueItem extends StatefulWidget {
   final int clueNum;
 
-  final Function updateClue;
-
-  ClueItem(this.updateClue, {@required this.clueNum});
+  ClueItem({@required this.clueNum});
 
   @override
   _ClueItemState createState() => _ClueItemState();
@@ -19,10 +19,20 @@ class _ClueItemState extends State<ClueItem> {
 
   @override
   Widget build(BuildContext context) {
+    bool incomplete = clues[widget.clueNum].incomplete;
+    if (incomplete == null)
+      incomplete = true;
+    bool scored = clues[widget.clueNum].scored;
+    if (scored == null)
+      scored = false;
     return InkWell(
       onTap: () {
-        if (solvedClue == widget.clueNum + 1 &&
-            clues[widget.clueNum].incomplete == true) {
+        currentClue = widget.clueNum;
+        if (incomplete == true){
+          Navigator.of(context)
+                    .pushNamed(ScirunMainScreen.routeName);
+        } else if(scored == false) {
+          debugPrint(currentClue.toString() + " " + widget.clueNum.toString());
           showDialog(
               context: context,
               builder: (BuildContext context) {
@@ -51,26 +61,23 @@ class _ClueItemState extends State<ClueItem> {
                               switch (codeWord) {
                                 case 'Zombie':
                                   score += 5;
-                                  clues[currentClue].incomplete = false;
-                                  currentClue += 1;
-                                  this.widget.updateClue();
+                                  clues[currentClue].scored = true;
                                   Navigator.of(context).pop();
                                   break;
                                 case 'Vampire':
                                   score += 8;
-                                  clues[currentClue].incomplete = false;
-                                  currentClue += 1;
-                                  this.widget.updateClue();
+                                  clues[currentClue].scored = true;
                                   Navigator.of(context).pop();
                                   break;
                                 case 'Frankenstein':
                                   score += 10;
-                                  clues[currentClue].incomplete = false;
-                                  currentClue += 1;
-                                  this.widget.updateClue();
+                                  clues[currentClue].scored = true;
                                   Navigator.of(context).pop();
                                   break;
                               }
+                              setState(() {
+                                scored = clues[currentClue].scored;
+                              });
                             },
                           ),
                         ],
@@ -84,8 +91,15 @@ class _ClueItemState extends State<ClueItem> {
       borderRadius: BorderRadius.circular(15),
       child: Container(
         padding: EdgeInsets.all(15),
-        child: Center(
-          child: Text(clues[widget.clueNum].detail),
+        child: Row(
+          children: <Widget>[
+            Text(clues[widget.clueNum].detail),
+            incomplete 
+            ? Text("INCOMPLETE")
+            : scored 
+            ? Text("SCORED")
+            : Text("NEEDS SCORING")
+          ],
         ),
       ),
     );

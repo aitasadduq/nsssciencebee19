@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../screens/modules_screen.dart';
+import '../screens/module_guidelines_screen.dart';
 import '../screens/contacts_screen.dart';
 import '../screens/ambassador_program_screen.dart';
 import '../screens/perks_screen.dart';
@@ -28,7 +29,8 @@ class MainDrawer extends StatelessWidget {
           ListTile(
             title: Text('Ambassador Program'),
             onTap: () {
-              Navigator.of(context).pushReplacementNamed(AmbassadorProgramScreen.routeName);
+              Navigator.of(context)
+                  .pushReplacementNamed(AmbassadorProgramScreen.routeName);
             },
           ),
           ListTile(
@@ -40,27 +42,44 @@ class MainDrawer extends StatelessWidget {
           ListTile(
             title: Text('Official Team Discount'),
             onTap: () {
-              Navigator.of(context).pushReplacementNamed(OfficialDiscountScreen.routeName);
+              Navigator.of(context)
+                  .pushReplacementNamed(OfficialDiscountScreen.routeName);
             },
           ),
           ListTile(
             title: Text('Winning Prizes'),
             onTap: () {
-              Navigator.of(context).pushReplacementNamed(WinningPrizesScreen.routeName);
+              Navigator.of(context)
+                  .pushReplacementNamed(WinningPrizesScreen.routeName);
             },
           ),
           ListTile(
             title: Text('Modules'),
             onTap: () {
-              Navigator.of(context).pushReplacementNamed(ModulesScreen.routeName);
+              Navigator.of(context)
+                  .pushReplacementNamed(ModulesScreen.routeName);
             },
           ),
           ListTile(
             title: Text('Contacts'),
             onTap: () {
-              Navigator.of(context).pushReplacementNamed(ContactsScreen.routeName);
+              Navigator.of(context)
+                  .pushReplacementNamed(ContactsScreen.routeName);
             },
           ),
+          ListTile(
+            title: Text('SciRun'),
+            onTap: () {
+              Navigator.of(context)
+                  .pushNamed(ModuleGuidelinesScreen.routeName, arguments: {
+                'id': 'm3',
+                'title': 'Sci-Run',
+                'logo': 'assets/images/scirun.png',
+                'guidelines': 'assets/documents/Scirun.pdf',
+                'hasApp': true,
+              });
+            },
+          )
         ],
       ),
     );

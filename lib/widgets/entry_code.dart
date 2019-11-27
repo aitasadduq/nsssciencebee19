@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../screens/scirun_main_screen.dart';
+import 'package:nss_sciencebee_19/screens/clues_list_screen.dart';
 import '../data.dart';
 
 class EntryCode extends StatefulWidget {
@@ -18,7 +18,7 @@ class _EntryCodeState extends State<EntryCode> {
   }
 
   openSciRun(BuildContext ctx) {
-    Navigator.of(ctx).pushNamed(ScirunMainScreen.routeName);
+    Navigator.of(ctx).pushNamed(CluesListScreen.routeName);
   }
 
   @override

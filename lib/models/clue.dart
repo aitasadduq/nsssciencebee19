@@ -6,6 +6,7 @@ class Clue {
   final String detail;
   final String hint;
   bool incomplete;
+  bool scored;
   bool hintViewed;
   bool textToRead;
 
@@ -13,6 +14,7 @@ class Clue {
     @required this.id,
     @required this.code,
     @required this.incomplete,
+    @required this.scored,
     @required this.detail,
     @required this.hint,
     @required this.hintViewed,
