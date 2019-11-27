@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nss_sciencebee_19/screens/clues_list_screen.dart';
 import '../data.dart';
+import 'dart:math';
 
 class EntryCode extends StatefulWidget {
   _EntryCodeState createState() => _EntryCodeState();
@@ -53,6 +54,8 @@ class _EntryCodeState extends State<EntryCode> {
                   onPressed: () {
                     debugPrint(codeController.text + " " + teamController.text);
                     if (codeController.text == validCode) {
+                      if (new Random().nextDouble() > 0.5) clueSet = 1;
+                      print('ClueSet: ' + clueSet.toString());
                       teamName = teamController.text;
                       unlocked = true;
                       openSciRun(context);

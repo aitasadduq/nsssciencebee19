@@ -19,10 +19,10 @@ class _ClueItemState extends State<ClueItem> {
 
   @override
   Widget build(BuildContext context) {
-    bool incomplete = clues[widget.clueNum].incomplete;
+    bool incomplete = clues[clueSet][widget.clueNum].incomplete;
     if (incomplete == null)
       incomplete = true;
-    bool scored = clues[widget.clueNum].scored;
+    bool scored = clues[clueSet][widget.clueNum].scored;
     if (scored == null)
       scored = false;
     return InkWell(
@@ -61,22 +61,22 @@ class _ClueItemState extends State<ClueItem> {
                               switch (codeWord) {
                                 case 'Zombie':
                                   score += 5;
-                                  clues[currentClue].scored = true;
+                                  clues[clueSet][currentClue].scored = true;
                                   Navigator.of(context).pop();
                                   break;
                                 case 'Vampire':
                                   score += 8;
-                                  clues[currentClue].scored = true;
+                                  clues[clueSet][currentClue].scored = true;
                                   Navigator.of(context).pop();
                                   break;
                                 case 'Frankenstein':
                                   score += 10;
-                                  clues[currentClue].scored = true;
+                                  clues[clueSet][currentClue].scored = true;
                                   Navigator.of(context).pop();
                                   break;
                               }
                               setState(() {
-                                scored = clues[currentClue].scored;
+                                scored = clues[clueSet][currentClue].scored;
                               });
                             },
                           ),
@@ -93,7 +93,7 @@ class _ClueItemState extends State<ClueItem> {
         padding: EdgeInsets.all(15),
         child: Row(
           children: <Widget>[
-            Text(clues[widget.clueNum].detail),
+            Text(clues[clueSet][widget.clueNum].detail),
             incomplete 
             ? Text("INCOMPLETE")
             : scored 

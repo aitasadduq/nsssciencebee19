@@ -63,7 +63,7 @@ class _ScirunMainScreenState extends State<ScirunMainScreen> {
                 heroTag: 1,
                 tooltip: 'Hint',
                 onPressed: () {
-                  if (!clues[clueNum].hintViewed) {
+                  if (!clues[clueSet][clueNum].hintViewed) {
                     showDialog(
                         context: context,
                         builder: (BuildContext context) {
@@ -79,7 +79,7 @@ class _ScirunMainScreenState extends State<ScirunMainScreen> {
                               FlatButton(
                                 child: Text('Continue'),
                                 onPressed: () {
-                                  clues[clueNum].hintViewed = true;
+                                  clues[clueSet][clueNum].hintViewed = true;
                                   setState(() {
                                     score -= penalty;
                                   });
@@ -106,7 +106,7 @@ class _ScirunMainScreenState extends State<ScirunMainScreen> {
             heroTag: 2,
             tooltip: 'Scan QR Code',
             onPressed: () {
-              if (!clues[currentClue].textToRead) {
+              if (!clues[clueSet][currentClue].textToRead) {
                 clueSolveOptions(context);
               } else
                 solveClue(context);
@@ -123,7 +123,7 @@ class _ScirunMainScreenState extends State<ScirunMainScreen> {
         builder: (BuildContext context) {
           return AlertDialog(
             title: Text('Hint'),
-            content: Text(clues[clueNum].hint),
+            content: Text(clues[clueSet][clueNum].hint),
             actions: <Widget>[
               FlatButton(
                 child: Text('OK'),
@@ -169,8 +169,8 @@ class _ScirunMainScreenState extends State<ScirunMainScreen> {
     setState(() {
       barcode = code;
     });
-    if (clues[currentClue].code == barcode) {
-      clues[currentClue].incomplete = false;
+    if (clues[clueSet][currentClue].code == barcode) {
+      clues[clueSet][currentClue].incomplete = false;
     } else {
       score -= 0.5;
     }

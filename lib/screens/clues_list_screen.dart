@@ -14,7 +14,7 @@ class CluesListScreen extends StatelessWidget {
       body: Container(
         padding: EdgeInsets.all(25),
         child: Column(
-          children: clues
+          children: clues[clueSet]
               .map((clueData) => ClueItem(
                     clueNum: clueData.id,
                   ))

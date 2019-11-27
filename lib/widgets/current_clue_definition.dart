@@ -14,7 +14,7 @@ class CurrentClueDefinition extends InheritedWidget {
   }
 
   void completeClue() {
-    clues[currentClue].incomplete = false;
+    clues[clueSet][currentClue].incomplete = false;
     currentClue += 1;
     clueNum = currentClue;
   }

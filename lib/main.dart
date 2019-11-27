@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
         ContactsScreen.routeName: (ctx) => ContactsScreen(),
         ModuleGuidelinesScreen.routeName: (ctx) => ModuleGuidelinesScreen(),
         ScirunMainScreen.routeName: (ctx) => ScirunMainScreen(),
-        CluesListScreen.routeName: (ctx) => CluesHistoryScreen(),
+        CluesListScreen.routeName: (ctx) => CluesListScreen(),
         AmbassadorProgramPerksScreen.routeName: (ctx) => AmbassadorProgramPerksScreen(),
         WinningPrizesScreen.routeName: (ctx) => WinningPrizesScreen(),
       },
