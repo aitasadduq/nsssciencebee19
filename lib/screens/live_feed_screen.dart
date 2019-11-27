@@ -112,8 +112,8 @@ class _LiveFeedScreenState extends State<LiveFeedScreen> {
       if (hour >= 12) {
         suffix = ' PM';
         if (hour > 12) hour = hour - 12;
-        time = hour.toString() + time.substring(2, 5) + suffix;
       }
+      time = hour.toString() + time.substring(2, 5) + suffix;
       var newsItem = NewsItem(content, time);
       switch (date) {
         case '29':
