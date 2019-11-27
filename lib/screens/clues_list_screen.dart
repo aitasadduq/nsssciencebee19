@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:nss_sciencebee_19/widgets/nust_map.dart';
 import '../widgets/clue_item.dart';
 import '../data.dart';
 
@@ -17,27 +18,55 @@ class _CluesListScreenState extends State<CluesListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Clues List'),
-      ),
-      body: Container(
-        padding: EdgeInsets.all(25),
-        child: Column(
-          children: clues[clueSet]
-              .map((clueData) => ClueItem(
-                    clueNum: clueData.id,
-                  ))
-              .toList(),
+        appBar: AppBar(
+          title: Text('Clues List'),
         ),
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        label: Text('End SciRun'),
-        icon: Icon(Icons.stop),
-        onPressed: () {
-          endSciRun(context);
-        },
-      ),
-    );
+        body: Container(
+          padding: EdgeInsets.all(25),
+          child: Column(
+            children: clues[clueSet]
+                .map((clueData) => ClueItem(
+                      clueNum: clueData.id,
+                    ))
+                .toList(),
+          ),
+        ),
+        floatingActionButton: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: <Widget>[
+            FloatingActionButton.extended(
+              heroTag: 0,
+              label: Text('NUST Map'),
+              icon: Icon(Icons.map),
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: Text('NUST Map'),
+                        content: NustMap(),
+                        actions: <Widget>[
+                          new FlatButton(
+                              onPressed: () => Navigator.of(context).pop(),
+                              child: Text('OK')),
+                        ],
+                      );
+                    });
+              },
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            FloatingActionButton.extended(
+              heroTag: 1,
+              label: Text('End SciRun'),
+              icon: Icon(Icons.stop),
+              onPressed: () {
+                endSciRun(context);
+              },
+            ),
+          ],
+        ));
   }
 
   endSciRun(context) {

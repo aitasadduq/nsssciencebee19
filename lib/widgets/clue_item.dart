@@ -95,10 +95,10 @@ class _ClueItemState extends State<ClueItem> {
           children: <Widget>[
             Text(clues[clueSet][widget.clueNum].detail),
             incomplete 
-            ? Text("INCOMPLETE")
+            ? Text(": INCOMPLETE")
             : scored 
-            ? Text("SCORED")
-            : Text("NEEDS SCORING")
+            ? Text(": SCORED")
+            : Text(": NEEDS SCORING")
           ],
         ),
       ),

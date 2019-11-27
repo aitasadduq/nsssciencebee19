@@ -51,6 +51,81 @@ class NustMap extends StatelessWidget {
       position: LatLng(33.644312, 72.992938),
       infoWindow: InfoWindow(title: 'S3H'),
     ),
+    Marker(
+      markerId: MarkerId('9'),
+      position: LatLng(33.641616, 72.983702),
+      infoWindow: InfoWindow(title: 'Exam Hall'),
+    ),
+    Marker(
+      markerId: MarkerId('10'),
+      position: LatLng(33.640743, 72.985281),
+      infoWindow: InfoWindow(title: 'NICE'),
+    ),
+    Marker(
+      markerId: MarkerId('11'),
+      position: LatLng(33.641847, 72.988884),
+      infoWindow: InfoWindow(title: 'KYBO'),
+    ),
+    Marker(
+      markerId: MarkerId('12'),
+      position: LatLng(33.642431, 72.989981),
+      infoWindow: InfoWindow(title: 'SEECS'),
+    ),
+    Marker(
+      markerId: MarkerId('13'),
+      position: LatLng(33.643919, 72.985708),
+      infoWindow: InfoWindow(title: 'Masjid'),
+    ),
+    Marker(
+      markerId: MarkerId('14'),
+      position: LatLng(33.644418, 72.987164),
+      infoWindow: InfoWindow(title: 'RIMMS'),
+    ),
+    Marker(
+      markerId: MarkerId('15'),
+      position: LatLng(33.643837, 72.991230),
+      infoWindow: InfoWindow(title: 'NBS'),
+    ),
+    Marker(
+      markerId: MarkerId('16'),
+      position: LatLng(33.645727, 72.988847),
+      infoWindow: InfoWindow(title: 'SADA'),
+    ),
+    Marker(
+      markerId: MarkerId('17'),
+      position: LatLng(33.644136, 72.987639),
+      infoWindow: InfoWindow(title: 'IAEC'),
+    ),
+    Marker(
+      markerId: MarkerId('18'),
+      position: LatLng(33.644951, 72.988035),
+      infoWindow: InfoWindow(title: 'IGIS'),
+    ),
+    Marker(
+      markerId: MarkerId('19'),
+      position: LatLng(33.646852, 72.989256),
+      infoWindow: InfoWindow(title: 'Margalla Cafe'),
+    ),
+    Marker(
+      markerId: MarkerId('20'),
+      position: LatLng(33.641616, 72.983702),
+      infoWindow: InfoWindow(title: 'Exam Hall'),
+    ),
+    Marker(
+      markerId: MarkerId('21'),
+      position: LatLng(33.647433, 72.990962),
+      infoWindow: InfoWindow(title: 'Dreamville'),
+    ),
+    Marker(
+      markerId: MarkerId('22'),
+      position: LatLng(33.648951, 72.992882),
+      infoWindow: InfoWindow(title: 'SCME'),
+    ),
+    Marker(
+      markerId: MarkerId('23'),
+      position: LatLng(33.643164, 72.993096),
+      infoWindow: InfoWindow(title: 'CIPS'),
+    ),
   };
 
   void _onMapCreated(GoogleMapController controller) {

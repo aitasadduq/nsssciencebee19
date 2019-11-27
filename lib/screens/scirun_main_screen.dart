@@ -102,10 +102,10 @@ class _ScirunMainScreenState extends State<ScirunMainScreen> {
 //            height: 1,
 //          ),
           FloatingActionButton.extended(
-            icon: Icon(Icons.settings_overscan),
-            label: Text('Scan QR'),
+            icon: Icon(Icons.lock_open),
+            label: Text('Solve Clue'),
             heroTag: 2,
-            tooltip: 'Scan QR Code',
+            tooltip: 'Solve Clue',
             onPressed: () {
               if (!clues[clueSet][currentClue].textToRead) {
                 clueSolveOptions(context);
