@@ -1,5 +1,7 @@
 import 'models/module.dart';
 import 'models/clue.dart';
+import 'package:path_provider/path_provider.dart';
+import 'dart:io';
 
 const MODULES = const [
   Module(
@@ -307,3 +309,54 @@ var finished = false;
 var teamName = '';
 var clueSet = 0;
 var lastClue = false;
+
+String getBuiltData() {
+  String result = teamName + '#' + clueSet.toString() + '#' + score.toString() + '#' + currentClue.toString() + '#' + unlocked.toString() + '#'
+  + finished.toString() + '#' + lastClue.toString() + '#';
+  for (Clue clue in clues[clueSet]) {
+    result += clue.hintViewed.toString() + ',' + clue.incomplete.toString() + ',' + clue.scored.toString() + ':';
+  }
+  return result.substring(0, result.length - 1);
+}
+
+setDataFromString(String input) {
+  var firstSplit = input.split('#');
+  teamName = firstSplit[0];
+  clueSet = int.parse(firstSplit[1]);
+  score = double.parse(firstSplit[2]);
+  currentClue = int.parse(firstSplit[3]);
+  unlocked = firstSplit[4] == 'true';
+  finished = firstSplit[5] == 'true';
+  lastClue = firstSplit[6] == 'true';
+  var cluesString = firstSplit[7].split(':');
+  for (int i = 0; i < 9; i++) {
+    var clueString = cluesString[i].split(',');
+    clues[clueSet][i].hintViewed = clueString[0] == 'true';
+    clues[clueSet][i].incomplete = clueString[1] == 'true';
+    clues[clueSet][i].scored = clueString[2] == 'true';
+  }
+}
+
+Future<String> get _localPath async {
+  final directory = await getApplicationDocumentsDirectory();
+  return directory.path;
+}
+
+Future<File> get _localFile async {
+  final path = await _localPath;
+  return File('$path/data.txt');
+}
+
+writeToFile() async {
+  final file = await _localFile;
+  file.writeAsString(getBuiltData());
+}
+
+readFromFile() async {
+  try {
+    final file = await _localFile;
+    setDataFromString(await file.readAsString());
+  } catch (e) {
+    print(e);
+  }
+}
