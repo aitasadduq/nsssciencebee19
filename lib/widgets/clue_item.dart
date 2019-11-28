@@ -78,6 +78,7 @@ class _ClueItemState extends State<ClueItem> {
                               setState(() {
                                 scored = clues[clueSet][currentClue].scored;
                               });
+                              writeToFile();
                             },
                           ),
                         ],

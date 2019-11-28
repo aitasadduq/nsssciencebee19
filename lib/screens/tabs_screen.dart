@@ -25,7 +25,7 @@ class _TabsScreenState extends State<TabsScreen> with WidgetsBindingObserver {
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.paused) {
+    if (state == AppLifecycleState.paused || state == AppLifecycleState.suspending) {
       print('APPLICATION IS PAUSING!');
       writeToFile();
     }

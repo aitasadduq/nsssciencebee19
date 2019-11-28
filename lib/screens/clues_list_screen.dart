@@ -112,6 +112,7 @@ class _CluesListScreenState extends State<CluesListScreen> {
                       'score': score,
                       'teamName': teamName,
                     });
+                    writeToFile();
                     Navigator.of(context).pop();
                     Navigator.of(context).pop();
                   }

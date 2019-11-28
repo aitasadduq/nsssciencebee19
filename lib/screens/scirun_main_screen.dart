@@ -84,6 +84,7 @@ class _ScirunMainScreenState extends State<ScirunMainScreen> {
                                   setState(() {
                                     score -= penalty;
                                   });
+                                  writeToFile();
                                   Navigator.of(context).pop();
                                   showHint(context);
                                 },
@@ -175,6 +176,7 @@ class _ScirunMainScreenState extends State<ScirunMainScreen> {
     } else {
       score -= 0.5;
     }
+    writeToFile();
   }
 
   scanWithQR(context) async {
