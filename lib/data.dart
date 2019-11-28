@@ -117,8 +117,8 @@ var clues = [
       detail: 'Clue 1',
       hint: 'Hint 1',
       hintViewed: false,
-      incomplete: true,
-      scored: false,
+      incomplete: false,
+      scored: true,
       textToRead: false,
     ),
     Clue(
@@ -127,8 +127,8 @@ var clues = [
       detail: 'Clue 2',
       hint: 'Hint 2',
       hintViewed: false,
-      incomplete: true,
-      scored: false,
+      incomplete: false,
+      scored: true,
       textToRead: true,
     ),
     Clue(
@@ -137,8 +137,8 @@ var clues = [
       detail: 'Clue 3',
       hint: 'Hint 3',
       hintViewed: false,
-      incomplete: true,
-      scored: false,
+      incomplete: false,
+      scored: true,
       textToRead: false,
     ),
     Clue(
@@ -147,8 +147,8 @@ var clues = [
       detail: 'Clue 4',
       hint: 'Hint 4',
       hintViewed: false,
-      incomplete: true,
-      scored: false,
+      incomplete: false,
+      scored: true,
       textToRead: false,
     ),
     Clue(
@@ -157,8 +157,8 @@ var clues = [
       detail: 'Clue 5',
       hint: 'Hint 5',
       hintViewed: false,
-      incomplete: true,
-      scored: false,
+      incomplete: false,
+      scored: true,
       textToRead: false,
     ),
     Clue(
@@ -167,8 +167,8 @@ var clues = [
       detail: 'Clue 6',
       hint: 'Hint 2',
       hintViewed: false,
-      incomplete: true,
-      scored: false,
+      incomplete: false,
+      scored: true,
       textToRead: false,
     ),
     Clue(
@@ -177,8 +177,8 @@ var clues = [
       detail: 'Clue 7',
       hint: 'Hint 3',
       hintViewed: false,
-      incomplete: true,
-      scored: false,
+      incomplete: false,
+      scored: true,
       textToRead: false,
     ),
     Clue(
@@ -187,7 +187,7 @@ var clues = [
       detail: 'Clue 8',
       hint: 'Hint 4',
       hintViewed: false,
-      incomplete: true,
+      incomplete: false,
       scored: false,
       textToRead: false,
     ),
@@ -306,3 +306,4 @@ var unlocked = false;
 var finished = false;
 var teamName = '';
 var clueSet = 0;
+var lastClue = false;

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:nss_sciencebee_19/widgets/nust_map.dart';
 import '../widgets/clue_item.dart';
+import '../models/clue.dart';
 import '../data.dart';
 
 class CluesListScreen extends StatefulWidget {
@@ -14,9 +15,25 @@ class CluesListScreen extends StatefulWidget {
 class _CluesListScreenState extends State<CluesListScreen> {
   TextEditingController _textFieldController = TextEditingController();
   final FirebaseDatabase _database = FirebaseDatabase.instance;
+  List<Clue> activeClues =
+      lastClue ? clues[clueSet] : clues[clueSet].sublist(0, 8);
+
+  void checkClues(){
+    if(!lastClue)
+      setState(() {
+        bool check = true;
+        activeClues.forEach((f) {
+          if (!f.scored) check = false;
+        });
+        lastClue = check;
+        activeClues =
+      lastClue ? clues[clueSet] : clues[clueSet].sublist(0, 8);
+      });
+  }
 
   @override
   Widget build(BuildContext context) {
+    checkClues();
     return Scaffold(
         appBar: AppBar(
           title: Text('Clues List'),
@@ -24,7 +41,7 @@ class _CluesListScreenState extends State<CluesListScreen> {
         body: Container(
           padding: EdgeInsets.all(25),
           child: Column(
-            children: clues[clueSet]
+            children: activeClues
                 .map((clueData) => ClueItem(
                       clueNum: clueData.id,
                     ))

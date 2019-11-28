@@ -54,7 +54,7 @@ class _EntryCodeState extends State<EntryCode> {
                   onPressed: () {
                     debugPrint(codeController.text + " " + teamController.text);
                     if (codeController.text == validCode) {
-                      if (new Random().nextDouble() > 0.5) clueSet = 1;
+                      if (new Random().nextDouble() > 0.5) clueSet = 0;
                       print('ClueSet: ' + clueSet.toString());
                       teamName = teamController.text;
                       unlocked = true;
