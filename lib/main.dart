@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nss_sciencebee_19/data.dart';
 import 'screens/tabs_screen.dart';
 import 'screens/modules_screen.dart';
 import 'screens/contacts_screen.dart';
@@ -7,8 +8,11 @@ import 'screens/scirun_main_screen.dart';
 import 'screens/clues_list_screen.dart';
 import 'screens/ambassador_program_perks_screen.dart';
 import 'screens/winning_prizes_screen.dart';
+import 'data.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  readFromFile();
+  runApp(MyApp());}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -37,7 +41,8 @@ class MyApp extends StatelessWidget {
         ModuleGuidelinesScreen.routeName: (ctx) => ModuleGuidelinesScreen(),
         ScirunMainScreen.routeName: (ctx) => ScirunMainScreen(),
         CluesListScreen.routeName: (ctx) => CluesListScreen(),
-        AmbassadorProgramPerksScreen.routeName: (ctx) => AmbassadorProgramPerksScreen(),
+        AmbassadorProgramPerksScreen.routeName: (ctx) =>
+            AmbassadorProgramPerksScreen(),
         WinningPrizesScreen.routeName: (ctx) => WinningPrizesScreen(),
       },
     );
@@ -72,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
       // so that the display can reflect the updated values. If we changed
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
-      _counter+=10;
+      _counter += 10;
     });
   }
 
