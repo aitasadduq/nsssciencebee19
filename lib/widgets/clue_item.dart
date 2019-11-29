@@ -59,11 +59,15 @@ class _ClueItemState extends State<ClueItem> {
                             child: Text('Submit Code'),
                             onPressed: () {
                               final codeWord = _codeController.text;
+                              print('THE CODE WORD: ' + codeWord + 'END');
+                              print('THE TRIMMED CODE WORD: ' + codeWord.toLowerCase().trim() + 'END');
                               switch (codeWord.toLowerCase().trim()) {
                                 case 'zombie':
+                                  print('THE SCORE MATCHED!!!');
                                   score += 5;
                                   clues[clueSet][currentClue].scored = true;
                                   Navigator.of(context).pop();
+                                  print(score.toString());
                                   break;
                                 case 'vampire':
                                   score += 10;
