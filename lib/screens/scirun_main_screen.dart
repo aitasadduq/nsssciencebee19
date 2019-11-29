@@ -12,7 +12,6 @@ class ScirunMainScreen extends StatefulWidget {
 }
 
 class _ScirunMainScreenState extends State<ScirunMainScreen> {
-
   final double diameter = 80;
   String barcode = '';
   int clueNum = currentClue;
@@ -36,18 +35,8 @@ class _ScirunMainScreenState extends State<ScirunMainScreen> {
 //        height: double.infinity,
 //        width: double.infinity,
         child: Center(
-          child: Column(
-            children: <Widget>[
-              ClueItem(
-                clueNum: clueNum,
-              ),
-              Center(
-                child: Text(barcode),
-              ),
-              Center(
-                child: Text(score.toString()),
-              ),
-            ],
+          child: ClueItem(
+            clueNum: clueNum,
           ),
         ),
       ),
@@ -171,7 +160,7 @@ class _ScirunMainScreenState extends State<ScirunMainScreen> {
     setState(() {
       barcode = code;
     });
-    if(clues[clueSet][currentClue].textToRead) {
+    if (clues[clueSet][currentClue].textToRead) {
       var solutionsString = clues[clueSet][currentClue].code.split('|');
       for (String solString in solutionsString) {
         if (solString == barcode) {

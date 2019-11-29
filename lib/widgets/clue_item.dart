@@ -66,12 +66,12 @@ class _ClueItemState extends State<ClueItem> {
                                   Navigator.of(context).pop();
                                   break;
                                 case 'vampire':
-                                  score += 8;
+                                  score += 10;
                                   clues[clueSet][currentClue].scored = true;
                                   Navigator.of(context).pop();
                                   break;
                                 case 'frankenstein':
-                                  score += 10;
+                                  score += 15;
                                   clues[clueSet][currentClue].scored = true;
                                   Navigator.of(context).pop();
                                   break;

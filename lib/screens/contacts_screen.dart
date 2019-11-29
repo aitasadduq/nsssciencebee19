@@ -101,12 +101,6 @@ class ContactsScreen extends StatelessWidget {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.arrow_forward),
-        onPressed: () {
-          Navigator.of(context).pushNamed(ScirunMainScreen.routeName);
-        },
-      ),
     );
   }
 }

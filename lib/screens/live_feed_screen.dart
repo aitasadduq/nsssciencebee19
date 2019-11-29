@@ -77,8 +77,7 @@ class _LiveFeedScreenState extends State<LiveFeedScreen> {
           time += ' - Sunday';
           break;
       }
-      var newsItem = NewsItem(content, time);
-      _newsList.insert(0, newsItem);
+      _newsList.insert(0, NewsItem(content, time));
     });
   }
 }
