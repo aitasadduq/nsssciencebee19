@@ -31,8 +31,9 @@ class MyApp extends StatelessWidget {
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
 //        primarySwatch: Colors.blue,
-        primaryColor: Colors.blue,
+        primaryColor: Color.fromRGBO(29, 30, 30, 1),
         accentColor: Colors.blueGrey,
+        scaffoldBackgroundColor: Color.fromRGBO(245, 181, 23, 1),
       ),
       home: TabsScreen(),
       routes: {

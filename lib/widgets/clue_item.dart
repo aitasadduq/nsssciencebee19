@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nss_sciencebee_19/data.dart';
 import 'dart:core';
@@ -58,18 +59,18 @@ class _ClueItemState extends State<ClueItem> {
                             child: Text('Submit Code'),
                             onPressed: () {
                               final codeWord = _codeController.text;
-                              switch (codeWord) {
-                                case 'Zombie':
+                              switch (codeWord.toLowerCase()) {
+                                case 'zombie':
                                   score += 5;
                                   clues[clueSet][currentClue].scored = true;
                                   Navigator.of(context).pop();
                                   break;
-                                case 'Vampire':
+                                case 'vampire':
                                   score += 8;
                                   clues[clueSet][currentClue].scored = true;
                                   Navigator.of(context).pop();
                                   break;
-                                case 'Frankenstein':
+                                case 'frankenstein':
                                   score += 10;
                                   clues[clueSet][currentClue].scored = true;
                                   Navigator.of(context).pop();
@@ -92,14 +93,16 @@ class _ClueItemState extends State<ClueItem> {
       borderRadius: BorderRadius.circular(15),
       child: Container(
         padding: EdgeInsets.all(15),
-        child: Row(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Text(clues[clueSet][widget.clueNum].detail),
+            Text(clues[clueSet][widget.clueNum].detail,
+            textAlign: TextAlign.left,),
             incomplete 
-            ? Text(": INCOMPLETE")
+            ? Text("INCOMPLETE", textAlign: TextAlign.left,)
             : scored 
-            ? Text(": SCORED")
-            : Text(": NEEDS SCORING")
+            ? Text("SCORED", textAlign: TextAlign.left,)
+            : Text("NEEDS SCORING", textAlign: TextAlign.left,)
           ],
         ),
       ),

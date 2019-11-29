@@ -12,9 +12,7 @@ class _LiveFeedScreenState extends State<LiveFeedScreen> {
   final FirebaseDatabase _database = FirebaseDatabase.instance;
   Query _newsQuery;
 
-  List<NewsItem> _newsFridayList = new List();
-  List<NewsItem> _newsSaturdayList = new List();
-  List<NewsItem> _newsSundayList = new List();
+  List<NewsItem> _newsList = new List();
 
   @override
   void initState() {
@@ -32,65 +30,18 @@ class _LiveFeedScreenState extends State<LiveFeedScreen> {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        height: 800,
-        child: Column(
-          children: <Widget>[
-            Text(
-              'Sunday',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            Container(
-              height: 150,
-              child: _newsSundayList.length > 0
-                  ? ListView.builder(
-                      itemCount: _newsSundayList.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return ListTile(
-                          title: Text(_newsSundayList[index].content),
-                          subtitle: Text(_newsSundayList[index].timestamp),
-                        );
-                      },
-                    )
-                  : Text('No updates for Sunday yet.'),
-            ),
-            Text(
-              'Saturday',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            Container(
-              height: 150,
-              child: _newsSaturdayList.length > 0
-                  ? ListView.builder(
-                itemCount: _newsSaturdayList.length,
+        height: 700,
+        child: _newsList.length > 0
+            ? ListView.builder(
+                itemCount: _newsList.length,
                 itemBuilder: (BuildContext context, int index) {
                   return ListTile(
-                    title: Text(_newsSaturdayList[index].content),
-                    subtitle: Text(_newsSaturdayList[index].timestamp),
+                    title: Text(_newsList[index].content),
+                    subtitle: Text(_newsList[index].timestamp),
                   );
                 },
               )
-                  : Text('No updates for Saturday yet.'),
-            ),
-            Text(
-              'Friday',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            Container(
-              height: 150,
-              child: _newsFridayList.length > 0
-                  ? ListView.builder(
-                itemCount: _newsFridayList.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return ListTile(
-                    title: Text(_newsFridayList[index].content),
-                    subtitle: Text(_newsFridayList[index].timestamp),
-                  );
-                },
-              )
-                  : Text('No updates for Friday yet.'),
-            ),
-          ],
-        ),
+            : Text('No updates yet.'),
       ),
     );
   }
@@ -114,18 +65,20 @@ class _LiveFeedScreenState extends State<LiveFeedScreen> {
         if (hour > 12) hour = hour - 12;
       }
       time = hour.toString() + time.substring(2, 5) + suffix;
-      var newsItem = NewsItem(content, time);
+
       switch (date) {
         case '29':
-          _newsFridayList.add(newsItem);
+          time += ' - Friday';
           break;
         case '30':
-          _newsSaturdayList.add(newsItem);
+          time += ' - Saturday';
           break;
         case '01':
-          _newsSundayList.add(newsItem);
+          time += ' - Sunday';
           break;
       }
+      var newsItem = NewsItem(content, time);
+      _newsList.insert(0, newsItem);
     });
   }
 }

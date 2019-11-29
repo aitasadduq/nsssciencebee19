@@ -231,7 +231,7 @@ class _ScirunMainScreenState extends State<ScirunMainScreen> {
               new FlatButton(
                 child: new Text('SUBMIT'),
                 onPressed: () {
-                  scanWithText(_textFieldController.text);
+                  scanWithText(_textFieldController.text.toLowerCase());
                   debugPrint(barcode);
                   Navigator.of(context).pop();
                   Navigator.of(context).pop();
