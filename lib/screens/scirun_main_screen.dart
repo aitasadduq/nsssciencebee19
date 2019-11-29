@@ -16,7 +16,7 @@ class _ScirunMainScreenState extends State<ScirunMainScreen> {
   final double diameter = 80;
   String barcode = '';
   int clueNum = currentClue;
-  int penalty = 3;
+  int penalty = 1;
   TextEditingController _textFieldController = TextEditingController();
 
   void updateClue() {
@@ -156,7 +156,7 @@ class _ScirunMainScreenState extends State<ScirunMainScreen> {
               new FlatButton(
                 child: new Text('SUBMIT'),
                 onPressed: () {
-                  scanWithText(_textFieldController.text);
+                  scanWithText(_textFieldController.text.toLowerCase().trim());
                   debugPrint(barcode);
                   Navigator.of(context).pop();
                   Navigator.of(context).pop();
@@ -171,10 +171,21 @@ class _ScirunMainScreenState extends State<ScirunMainScreen> {
     setState(() {
       barcode = code;
     });
-    if (clues[clueSet][currentClue].code == barcode) {
-      clues[clueSet][currentClue].incomplete = false;
+    if(clues[clueSet][currentClue].textToRead) {
+      var solutionsString = clues[clueSet][currentClue].code.split('|');
+      for (String solString in solutionsString) {
+        if (solString == barcode) {
+          clues[clueSet][currentClue].incomplete = false;
+          break;
+        }
+      }
+      if (clues[clueSet][currentClue].incomplete) score -= 0.5;
     } else {
-      score -= 0.5;
+      if (clues[clueSet][currentClue].code == barcode) {
+        clues[clueSet][currentClue].incomplete = false;
+      } else {
+        score -= 0.5;
+      }
     }
     writeToFile();
   }

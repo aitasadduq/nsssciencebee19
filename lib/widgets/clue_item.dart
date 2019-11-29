@@ -59,7 +59,7 @@ class _ClueItemState extends State<ClueItem> {
                             child: Text('Submit Code'),
                             onPressed: () {
                               final codeWord = _codeController.text;
-                              switch (codeWord.toLowerCase()) {
+                              switch (codeWord.toLowerCase().trim()) {
                                 case 'zombie':
                                   score += 5;
                                   clues[clueSet][currentClue].scored = true;
@@ -92,17 +92,19 @@ class _ClueItemState extends State<ClueItem> {
       },
       borderRadius: BorderRadius.circular(15),
       child: Container(
+        width: 300,
         padding: EdgeInsets.all(15),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Text(clues[clueSet][widget.clueNum].detail,
             textAlign: TextAlign.left,),
             incomplete 
-            ? Text("INCOMPLETE", textAlign: TextAlign.left,)
+            ? Text("INCOMPLETE", textAlign: TextAlign.left, style: TextStyle(color: Colors.red),)
             : scored 
-            ? Text("SCORED", textAlign: TextAlign.left,)
-            : Text("NEEDS SCORING", textAlign: TextAlign.left,)
+            ? Text("SCORED", textAlign: TextAlign.left, style: TextStyle(color: Colors.green),)
+            : Text("NEEDS SCORING", textAlign: TextAlign.left, style: TextStyle(color: Colors.blue),)
           ],
         ),
       ),

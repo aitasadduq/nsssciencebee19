@@ -54,10 +54,22 @@ class _EntryCodeState extends State<EntryCode> {
                   onPressed: () {
                     debugPrint(codeController.text + " " + teamController.text);
                     if (codeController.text == validCode) {
-                      if (new Random().nextDouble() > 0.5) clueSet = 0;
+                      var randomizer = new Random().nextDouble();
+                      if (randomizer > 0.83) {
+                        clueSet = 5;
+                      } else if (randomizer > 0.67) {
+                        clueSet = 4;
+                      } else if (randomizer > 0.5) {
+                        clueSet = 3;
+                      } else if (randomizer > 0.33) {
+                        clueSet = 2;
+                      } else if (randomizer > 0.16) {
+                        clueSet = 1;
+                      }
                       print('ClueSet: ' + clueSet.toString());
                       teamName = teamController.text;
                       unlocked = true;
+                      writeToFile();
                       openSciRun(context);
                     }
                   },

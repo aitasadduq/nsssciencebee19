@@ -39,14 +39,23 @@ class _CluesListScreenState extends State<CluesListScreen> {
           title: Text('Clues List'),
         ),
         body: Container(
+          height: 430,
           padding: EdgeInsets.all(25),
-          child: Column(
-            children: activeClues
-                .map((clueData) => ClueItem(
-                      clueNum: clueData.id,
-                    ))
-                .toList(),
-          ),
+          child: ListView.builder(
+            itemCount: activeClues.length,
+            itemBuilder: (BuildContext context, int index){
+              return ClueItem(
+                clueNum: activeClues[index].id,
+              );
+            },),
+//          child: Column(
+//            crossAxisAlignment: CrossAxisAlignment.start,
+//            children: activeClues
+//                .map((clueData) => ClueItem(
+//                      clueNum: clueData.id,
+//                    ))
+//                .toList(),
+//          ),
         ),
         floatingActionButton: Column(
           mainAxisAlignment: MainAxisAlignment.end,
