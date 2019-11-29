@@ -38,6 +38,7 @@ class ModuleItem extends StatelessWidget {
         child: Center(
           child: Text(
             title,
+            textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.title,
           ),
         ),

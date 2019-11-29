@@ -19,6 +19,7 @@ class ContactsScreen extends StatelessWidget {
             children: <Widget>[
               Text('Module Heads:'),
               Text('Khan Moeen Danish: 03052888000'),
+              Text('Shaheer Mehmood: 03445115069'),
               Text(''),
               Text('TECHNICAL'),
               Text(''),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_database/firebase_database.dart';
-import 'package:nss_sciencebee_19/models/schedule.dart';
+import 'package:flutter_plugin_pdf_viewer/flutter_plugin_pdf_viewer.dart';
 
 class TimetableScreen extends StatefulWidget {
   @override
@@ -8,62 +7,24 @@ class TimetableScreen extends StatefulWidget {
 }
 
 class _TimetableScreenState extends State<TimetableScreen> {
-  var _onScheduleAddedSubscription;
-  final FirebaseDatabase _database = FirebaseDatabase.instance;
-  Query _newsQuery;
-
-  List<Schedule> _schedulesList = new List();
-
-  @override
-  void initState() {
-    getData();
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _onScheduleAddedSubscription.cancel();
-    super.dispose();
-  }
+  PDFDocument document;
+  bool loading = true;
 
   @override
   Widget build(BuildContext context) {
+    if (loading) _doc();
     return Center(
-      child: Container(
-        height: 800,
-        child: _schedulesList.length > 0
-            ? ListView.builder(
-                itemCount: _schedulesList.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Card(
-                    child: Column(
-                      children: <Widget>[
-                        Text(_schedulesList[index].name),
-                        Text(_schedulesList[index].date),
-                        Text(_schedulesList[index].startTime),
-                        Text(_schedulesList[index].endTime),
-                      ],
-                    ),
-                  );
-                })
-            : Text('No timetable currently available'),
+      child: PDFViewer(
+        document: document,
       ),
     );
   }
 
-  void getData() {
-    _newsQuery = _database.reference().child('timetable');
-    _onScheduleAddedSubscription =
-        _newsQuery.onChildAdded.listen(_onEntryAdded);
-  }
-
-  _onEntryAdded(Event event) {
+  _doc () async {
+    PDFDocument doc = await PDFDocument.fromAsset('assets/documents/schedule.pdf');
     setState(() {
-      String name = event.snapshot.value['name'];
-      String date = event.snapshot.value['date'];
-      String startTime = event.snapshot.value['startTime'];
-      String endTime = event.snapshot.value['endTime'];
-      _schedulesList.add(Schedule(name, date, startTime, endTime));
+      loading = false;
+      document = doc;
     });
   }
 }

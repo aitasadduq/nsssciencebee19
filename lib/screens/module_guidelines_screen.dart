@@ -13,7 +13,6 @@ class ModuleGuidelinesScreen extends StatefulWidget {
 
 class _ModuleGuidelinesScreenState extends State<ModuleGuidelinesScreen> {
   PDFDocument document;
-  PDFDocument doc;
   bool loading = true;
   Image image;
 
@@ -47,7 +46,7 @@ class _ModuleGuidelinesScreenState extends State<ModuleGuidelinesScreen> {
   }
 
   _doc(String docPath) async {
-    doc = await PDFDocument.fromAsset(docPath);
+    PDFDocument doc = await PDFDocument.fromAsset(docPath);
     setState(() {
       loading = false;
       document = doc;
