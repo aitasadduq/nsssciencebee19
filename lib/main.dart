@@ -8,11 +8,13 @@ import 'screens/scirun_main_screen.dart';
 import 'screens/clues_list_screen.dart';
 import 'screens/ambassador_program_perks_screen.dart';
 import 'screens/winning_prizes_screen.dart';
+import 'screens/data_screen.dart';
 import 'data.dart';
 
 void main() {
   readFromFile();
-  runApp(MyApp());}
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -45,6 +47,7 @@ class MyApp extends StatelessWidget {
         AmbassadorProgramPerksScreen.routeName: (ctx) =>
             AmbassadorProgramPerksScreen(),
         WinningPrizesScreen.routeName: (ctx) => WinningPrizesScreen(),
+        DataScreen.routeName: (ctx) => DataScreen(),
       },
     );
   }
